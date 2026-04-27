@@ -1,0 +1,246 @@
+/* ============================================
+   SHOP — Clean Retail Aesthetic
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg:         #F5F2EE;
+    --surface:    #FFFFFF;
+    --charcoal:   #1C1C1E;
+    --mid:        #6B6B6B;
+    --accent:     #C8893A;
+    --accent-dk:  #A36E28;
+    --border:     #E4DED6;
+    --shadow-sm:  0 2px 8px rgba(28,28,30,.07);
+    --shadow-md:  0 6px 24px rgba(28,28,30,.12);
+    --radius:     14px;
+    --transition: .22s cubic-bezier(.4,0,.2,1);
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--charcoal);
+    min-height: 100vh;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2rem 5vw 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── Cart button ────────────────────────────── */
+#cart-button {
+    align-self: flex-start;
+    padding: .55rem 1.4rem;
+    background: var(--charcoal);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+#cart-button:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+
+#cart-button:active {
+    transform: translateY(0);
+}
+
+/* ── Product & Cart grids ───────────────────── */
+#product-list:not([hidden]),
+#cart-list:not([hidden]) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ── Card ───────────────────────────────────── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--transition), transform var(--transition);
+    animation: fadeUp .35s ease both;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.card:nth-child(1) { animation-delay: .05s; }
+.card:nth-child(2) { animation-delay: .10s; }
+.card:nth-child(3) { animation-delay: .15s; }
+.card:nth-child(4) { animation-delay: .20s; }
+.card:nth-child(5) { animation-delay: .25s; }
+.card:nth-child(6) { animation-delay: .30s; }
+
+/* ── Card image ─────────────────────────────── */
+.card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    display: block;
+    background: var(--bg);
+    padding: .5rem;
+    transition: transform .4s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.04);
+}
+
+/* ── Card text ──────────────────────────────── */
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 1.1rem .3rem;
+    color: var(--charcoal);
+}
+
+.card-price {
+    font-size: .88rem;
+    color: var(--mid);
+    font-weight: 400;
+    margin: 0 1.1rem .2rem;
+}
+
+.card-total {
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--accent-dk);
+    margin: .15rem 1.1rem .8rem;
+}
+
+/* ── Add to cart button ─────────────────────── */
+.add-to-cart {
+    display: block;
+    width: calc(100% - 2.2rem);
+    margin: auto 1.1rem 1.1rem;
+    padding: .65rem 0;
+    background: var(--charcoal);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.add-to-cart:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+}
+
+/* ── Qty controls ───────────────────────────── */
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin: auto 1.1rem .3rem;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--charcoal);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.qty-btn:hover {
+    background: var(--charcoal);
+    color: #fff;
+    border-color: var(--charcoal);
+}
+
+.qty-number {
+    font-size: 1rem;
+    font-weight: 500;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* ── Empty cart message ─────────────────────── */
+.empty-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--mid);
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 0;
+    opacity: .6;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 600px) {
+    body {
+        padding: 1.2rem 1.2rem 5rem;
+    }
+
+    #product-list:not([hidden]),
+    #cart-list:not([hidden]) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .card-title {
+        font-size: .95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    #product-list:not([hidden]),
+    #cart-list:not([hidden]) {
+        grid-template-columns: 1fr;
+    }
+}
